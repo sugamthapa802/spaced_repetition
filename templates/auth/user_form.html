@@ -1,15 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    <form action="" method="post">
-        {% csrf_token %}
-     {{form.as_p}}
-    <button type="submit">Register</button>
-    </form>
-</body>
-</html>
+{% extends "../base.html" %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block title %}Register{% endblock title %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'cards/css/user_form.css' %}">
+{% endblock extra_css %}
+
+
+{% block content %}
+
+<div class="register-container">
+    <div class="register-card">
+
+        <h2>Create Account</h2>
+        <p class="register-subtitle">
+            Create an account to get started
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {% bootstrap_form form %}
+
+            <button type="submit" class="btn btn-primary register-btn">
+                Create Account
+            </button>
+        </form>
+
+        <p class="login-link">
+            Already have an account?
+            <a href="{% url 'login' %}">Login</a>
+        </p>
+
+    </div>
+</div>
+
+{% endblock content %}
