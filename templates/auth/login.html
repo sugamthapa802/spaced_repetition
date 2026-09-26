@@ -1,0 +1,22 @@
+{% extends "../base.html" %} 
+{% load django_bootstrap5 %} 
+{% load static %} 
+{%block title %}Login{% endblock title %} 
+{% block extra_css %} 
+<link rel="stylesheet" href="{% static 'cards/css/login.css' %}" />
+{% endblock extra_css%}
+ {% block content %}
+
+<div class="login-container">
+  <div class="login-card">
+    <h2>Login</h2>
+
+    <form method="POST">
+      {% csrf_token %} {% bootstrap_form form %}
+
+      <button type="submit" class="btn btn-primary login-btn">Login</button>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
