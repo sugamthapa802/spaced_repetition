@@ -2,10 +2,9 @@
 {% block title %} index{% endblock title %} 
 
 {% block content %}
-{{request.user}}
-
-
-<h3>this is index page</h3>
+<h3> {% if request.user.is_authenticated %}
+    {{user.name}}
+    {% endif %}</h3>
 {% endblock content %}
 
 
