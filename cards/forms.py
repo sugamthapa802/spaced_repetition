@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
+from .models import Deck, Flashcard
 
 
 class CustomLoginForm(AuthenticationForm):
@@ -16,3 +17,9 @@ class CustomLoginForm(AuthenticationForm):
             "placeholder": "Password",
         })
     )
+
+
+class DeckForm(forms.ModelForm):
+    class Meta:
+        model=Deck
+        fields=["name","description"]
