@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserRegisterView,index,UserLogin,UserLogout
+from .views import UserRegisterView,index,UserLogin,UserLogout,CreateDeckView
 # from .import views
 
 urlpatterns=[
@@ -7,4 +7,5 @@ urlpatterns=[
     path("register/",UserRegisterView.as_view(),name="register"),
     path("login/",UserLogin.as_view(),name="login"),
     path("logout/",UserLogout.as_view(),name="logout"),
+    path("createdeck/",CreateDeckView.as_view(),name="createdeck"),
 ]
