@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserRegisterView,index,UserLogin,UserLogout,CreateDeckView
+from .views import UserRegisterView,index,UserLogin,UserLogout,CreateDeckView,CreateFlashcardView
 # from .import views
 
 urlpatterns=[
@@ -8,4 +8,5 @@ urlpatterns=[
     path("login/",UserLogin.as_view(),name="login"),
     path("logout/",UserLogout.as_view(),name="logout"),
     path("createdeck/",CreateDeckView.as_view(),name="createdeck"),
+    path("createflashcard/",CreateFlashcardView.as_view(),name="createflashcard"),
 ]
