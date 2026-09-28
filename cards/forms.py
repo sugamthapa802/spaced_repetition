@@ -23,3 +23,9 @@ class DeckForm(forms.ModelForm):
     class Meta:
         model=Deck
         fields=["name","description"]
+
+
+class FlashcardForm(forms.ModelForm):
+    class Meta:
+        model=Flashcard
+        fields=["deck","question","answer"]
