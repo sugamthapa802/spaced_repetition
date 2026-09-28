@@ -1,0 +1,84 @@
+{% extends "../base.html" %}
+
+{% load static %}
+
+{% block title %}Review{% endblock title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'cards/css/review.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+
+<div class="review-container">
+
+    <h1>Today's Review</h1>
+
+    {% for flashcard in flashcards %}
+
+        <div class="flashcard-card">
+
+            <div class="flashcard-question">
+                <span class="card-label">Question</span>
+                <p>{{ flashcard.question }}</p>
+            </div>
+
+            <button
+                type="button"
+                class="show-answer-btn"
+                onclick="showAnswer(this)"
+            >
+                Show Answer
+            </button>
+
+            <div class="flashcard-answer" hidden>
+                <span class="card-label">Answer</span>
+                <p>{{ flashcard.answer }}</p>
+
+                <div class="review-actions">
+
+                    <button type="button" class="btn btn-again">
+                        Again
+                    </button>
+
+                    <button type="button" class="btn btn-hard">
+                        Hard
+                    </button>
+
+                    <button type="button" class="btn btn-good">
+                        Good
+                    </button>
+
+                    <button type="button" class="btn btn-easy">
+                        Easy
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <div class="empty-review">
+            <h2>You're all caught up! 🎉</h2>
+            <p>There are no flashcards due for review today.</p>
+        </div>
+
+    {% endfor %}
+
+</div>
+
+
+<script>
+    function showAnswer(button) {
+        const answer = button.nextElementSibling;
+
+        answer.hidden = false;
+        button.hidden = true;
+    }
+</script>
+
+{% endblock content %}
+```

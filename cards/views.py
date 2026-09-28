@@ -9,6 +9,7 @@ from django.views.generic import CreateView, ListView, DetailView, DeleteView
 from .forms import CustomLoginForm,DeckForm,FlashcardForm
 from .models import Deck,Flashcard
 from django.contrib.auth.mixins import LoginRequiredMixin
+from datetime import date
 
 def index(request):
     return render(request,"cards/home.html")
@@ -42,3 +43,13 @@ class CreateFlashcardView(LoginRequiredMixin,CreateView):
     form_class=FlashcardForm
     template_name="cards/flashcard_form.html"
     success_url=reverse_lazy("home")
+
+
+class ReviewFlashcardView(LoginRequiredMixin,ListView):
+    template_name="cards/review.html"
+    context_object_name="flashcards"
+    def get_queryset(self):
+        return Flashcard.objects.filter(deck__owner=self.request.user,
+                                        due_date=date.today())
+    
+    
