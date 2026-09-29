@@ -1,0 +1,110 @@
+{% extends "../base.html" %}
+
+{% load static %}
+
+{% block title %}My Decks{% endblock title %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'cards/css/all-decks.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+
+<div class="decks-container">
+
+    <div class="decks-header">
+
+        <div>
+            <p class="section-label">YOUR COLLECTION</p>
+            <h1>My Decks</h1>
+            <p class="header-description">
+                Organize your flashcards into focused study decks.
+            </p>
+        </div>
+
+        <a href="{% url 'createdeck' %}" class="create-deck-btn">
+            + Create Deck
+        </a>
+
+    </div>
+
+
+    {% if decks %}
+
+        <div class="deck-grid">
+
+            {% for deck in decks %}
+
+                <div class="deck-card">
+
+                    <div class="deck-card-top">
+
+                        <div class="deck-icon">
+                            📚
+                        </div>
+
+                        <a href="{% url 'deletedeck' deck.id %}"
+                           class="delete-deck-icon"
+                           aria-label="Delete {{ deck.name }}"
+                           title="Delete deck">
+                            🗑
+                        </a>
+
+                    </div>
+
+
+                    <div class="deck-info">
+
+                        <h2>{{ deck.name }}</h2>
+
+                        {% if deck.description %}
+                            <p>{{ deck.description }}</p>
+                        {% else %}
+                            <p class="no-description">
+                                No description added.
+                            </p>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="deck-actions">
+
+                        <a href="{% url 'createflashcard' %}"
+                           class="add-card-btn">
+                            + Add Card
+                        </a>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-decks">
+
+            <div class="empty-icon">📚</div>
+
+            <h2>No decks yet</h2>
+
+            <p>
+                Create your first deck and start building
+                your flashcard collection.
+            </p>
+
+            <a href="{% url 'createdeck' %}" class="create-deck-btn">
+                + Create Your First Deck
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock content %}
