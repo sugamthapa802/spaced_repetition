@@ -1,0 +1,65 @@
+{% extends "../base.html" %}
+
+{% load static %}
+
+{% block title %}Delete Deck{% endblock title %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'cards/css/deletedeck.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+
+<div class="decks-container">
+
+    <!-- Header -->
+    <header class="decks-header">
+        <div>
+            <p class="section-label">DELETE DECK</p>
+            <h1>Delete this deck?</h1>
+            <p class="header-description">
+                This action cannot be undone. All flashcards inside this deck will be permanently removed.
+            </p>
+        </div>
+    </header>
+
+
+    <!-- Confirmation card -->
+    <section class="deck-grid">
+
+        <div class="deck-card delete-deck-card">
+
+            <div class="deck-card-top">
+                <div class="deck-icon">⚠️</div>
+                <span class="deck-number">Deck #{{ deck.id }}</span>
+            </div>
+
+            <div class="deck-info">
+                <h2>{{ deck.name }}</h2>
+                {% if deck.description %}
+                    <p>{{ deck.description }}</p>
+                {% else %}
+                    <p class="no-description">No description provided.</p>
+                {% endif %}
+            </div>
+
+            <div class="deck-actions delete-actions">
+                <form action="{% url 'deletedeck' deck.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-deck-btn">
+                        Yes, delete this deck
+                    </button>
+                    <a href="{% url 'listdeck' %}" class="cancel-deck-btn">
+                        Cancel
+                    </a>
+                </form>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock content %}

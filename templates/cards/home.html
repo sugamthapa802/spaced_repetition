@@ -1,10 +1,124 @@
 {% extends "../base.html" %}
-{% block title %} index{% endblock title %} 
+
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'cards/css/home.css' %}">
+{% endblock extra_css %}
 
 {% block content %}
-<h3> {% if request.user.is_authenticated %}
-    {{user.name}}
-    {% endif %}</h3>
+
+<div class="home-container">
+
+<section class="welcome-section">
+    <p class="welcome-label">YOUR STUDY SPACE</p>
+
+    <h1>
+        Welcome back{% if user.is_authenticated %}, {{ user.name }}{% endif %} 👋
+    </h1>
+
+    <p class="welcome-text">
+        Create decks, build flashcards, and keep your knowledge fresh.
+    </p>
+</section>
+
+
+<!-- Primary actions -->
+
+<section class="action-grid">
+
+    <a href="{% url 'createdeck' %}" class="action-card create-deck-card">
+
+        <div class="action-icon">＋</div>
+
+        <div>
+            <h2>Create a Deck</h2>
+            <p>
+                Organize your flashcards into a new study deck.
+            </p>
+        </div>
+
+        <span class="action-arrow">→</span>
+
+    </a>
+
+
+    <a href="{% url 'createflashcard' %}" class="action-card">
+
+        <div class="action-icon">▤</div>
+
+        <div>
+            <h2>Add Flashcard</h2>
+            <p>
+                Create a question and answer for your next review.
+            </p>
+        </div>
+
+        <span class="action-arrow">→</span>
+
+    </a>
+
+</section>
+
+
+<!-- Review section -->
+
+<section class="review-section">
+
+    <div class="review-content">
+
+        <div>
+            <p class="section-label">READY TO REVIEW?</p>
+
+            <h2>Keep your memory fresh.</h2>
+
+            <p>
+                Review your cards and let the scheduler determine
+                when you should see them again.
+            </p>
+        </div>
+
+        <a href="{% url 'review' %}" class="review-button">
+            Start Review →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- Quick navigation -->
+
+<section class="quick-links">
+
+    <h2>Quick Access</h2>
+
+    <div class="quick-link-grid">
+
+        <a href="{% url 'listdeck' %}" class="quick-link">
+            <span>📚</span>
+            <div>
+                <strong>My Decks</strong>
+                <small>View your study decks</small>
+            </div>
+        </a>
+
+        <a href="{% url 'review' %}" class="quick-link">
+            <span>🧠</span>
+            <div>
+                <strong>Today's Review</strong>
+                <small>Review cards that are due</small>
+            </div>
+        </a>
+
+    </div>
+
+</section>
+
+
+</div>
+
 {% endblock content %}
-
-

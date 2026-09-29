@@ -16,48 +16,73 @@
 
     {% for flashcard in flashcards %}
 
-        <div class="flashcard-card">
+        <form method="post" action="{% url 'update-review' %}" class="flashcard-form">
 
-            <div class="flashcard-question">
-                <span class="card-label">Question</span>
-                <p>{{ flashcard.question }}</p>
-            </div>
+            {% csrf_token %}
 
-            <button
-                type="button"
-                class="show-answer-btn"
-                onclick="showAnswer(this)"
+            <!-- Tell Django which flashcard was reviewed -->
+            <input
+                type="hidden"
+                name="flashcard_id"
+                value="{{ flashcard.id }}"
             >
-                Show Answer
-            </button>
 
-            <div class="flashcard-answer" hidden>
-                <span class="card-label">Answer</span>
-                <p>{{ flashcard.answer }}</p>
+            <div class="flashcard-card">
 
-                <div class="review-actions">
+                <div class="flashcard-question">
+                    <span class="card-label">Question</span>
+                    <p>{{ flashcard.question }}</p>
+                </div>
 
-                    <button type="button" class="btn btn-again">
-                        Again
-                    </button>
+                <button
+                    type="button"
+                    class="show-answer-btn"
+                    onclick="showAnswer(this)"
+                >
+                    Show Answer
+                </button>
 
-                    <button type="button" class="btn btn-hard">
-                        Hard
-                    </button>
+                <div class="flashcard-answer" hidden>
 
-                    <button type="button" class="btn btn-good">
-                        Good
-                    </button>
+                    <span class="card-label">Answer</span>
+                    <p>{{ flashcard.answer }}</p>
 
-                    <button type="button" class="btn btn-easy">
-                        Easy
-                    </button>
+                    <div class="review-actions">
+
+                        <button
+                            type="submit"
+                            name="rating"
+                            value="hard"
+                            class="btn btn-hard"
+                        >
+                            Hard
+                        </button>
+
+                        <button
+                            type="submit"
+                            name="rating"
+                            value="good"
+                            class="btn btn-good"
+                        >
+                            Good
+                        </button>
+
+                        <button
+                            type="submit"
+                            name="rating"
+                            value="easy"
+                            class="btn btn-easy"
+                        >
+                            Easy
+                        </button>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
+        </form>
 
     {% empty %}
 
@@ -81,4 +106,3 @@
 </script>
 
 {% endblock content %}
-```

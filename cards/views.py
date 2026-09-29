@@ -5,11 +5,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView,LogoutView
-from django.views.generic import CreateView, ListView, DetailView, DeleteView
+from django.views.generic import CreateView, ListView, DetailView, DeleteView,UpdateView,View
 from .forms import CustomLoginForm,DeckForm,FlashcardForm
 from .models import Deck,Flashcard
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import date
+from .services import ReviewService
+
+
 
 def index(request):
     return render(request,"cards/home.html")
@@ -37,6 +40,20 @@ class CreateDeckView(LoginRequiredMixin,CreateView):
         form.instance.owner=self.request.user
         return super().form_valid(form)
 
+class DeckListView(LoginRequiredMixin,ListView):
+    template_name="cards/all-decks.html"
+    context_object_name="decks"
+    def get_queryset(self):
+        return Deck.objects.filter(owner=self.request.user)
+
+
+class DeleteDeckView(LoginRequiredMixin,DeleteView):
+    template_name="cards/confirm_deck_delete.html"
+    success_url=reverse_lazy("listdeck")
+    def get_queryset(self):
+        return Deck.objects.filter(owner=self.request.user)
+    
+
 class CreateFlashcardView(LoginRequiredMixin,CreateView):
     # login_url="login"
     model=Flashcard
@@ -52,4 +69,11 @@ class ReviewFlashcardView(LoginRequiredMixin,ListView):
         return Flashcard.objects.filter(deck__owner=self.request.user,
                                         due_date=date.today())
     
-    
+class UpdateFlashcardReviewView(View):
+    def post(self,request,*args, **kwargs):
+        flashcard_id=request.POST.get("flashcard_id")
+        rating=request.POST.get("rating")
+        ReviewService.update_interval(flashcard_id,
+                                      self.request.user,
+                                      rating)
+        return redirect("review")
