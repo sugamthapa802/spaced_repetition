@@ -6,12 +6,13 @@ from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView,LogoutView
 from django.views.generic import CreateView, ListView, DetailView, DeleteView,UpdateView,View
+from django.views.generic.detail import SingleObjectMixin
 from .forms import CustomLoginForm,DeckForm,FlashcardForm
 from .models import Deck,Flashcard
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import date
 from .services import ReviewService
-
+from django.shortcuts import get_object_or_404
 
 
 def index(request):
@@ -61,6 +62,15 @@ class CreateFlashcardView(LoginRequiredMixin,CreateView):
     template_name="cards/flashcard_form.html"
     success_url=reverse_lazy("home")
 
+
+class ListFlashcardView(LoginRequiredMixin,ListView):
+    context_object_name="flashcards"
+    template_name="cards/deck_flashcard.html"
+    def get_queryset(self):
+        self.deck=get_object_or_404(Deck,pk=self.kwargs["pk"])
+        queryset= Flashcard.objects.filter(deck=self.deck)
+        return queryset
+    
 
 class ReviewFlashcardView(LoginRequiredMixin,ListView):
     template_name="cards/review.html"

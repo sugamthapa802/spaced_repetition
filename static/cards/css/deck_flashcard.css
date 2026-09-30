@@ -1,0 +1,167 @@
+.flashcards-page {
+width: 92%;
+max-width: 1250px;
+margin: 45px auto;
+}
+
+/* Header */
+
+.page-header {
+margin-bottom: 35px;
+}
+
+.page-header h1 {
+margin: 0;
+font-size: 32px;
+font-weight: 700;
+}
+
+.page-header p {
+margin-top: 8px;
+color: #777;
+font-size: 15px;
+}
+
+/* Card grid */
+
+.flashcard-grid {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 22px;
+}
+
+/* Individual card */
+
+.flashcard {
+min-height: 280px;
+padding: 22px;
+
+```
+background: #ffffff;
+border: 1px solid #e5e7eb;
+border-radius: 14px;
+
+display: flex;
+flex-direction: column;
+
+transition: transform 0.2s ease,
+            box-shadow 0.2s ease;
+```
+
+}
+
+.flashcard:hover {
+transform: translateY(-4px);
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Card number */
+
+.card-number {
+font-size: 12px;
+font-weight: 600;
+color: #8a8a8a;
+
+```
+margin-bottom: 25px;
+```
+
+}
+
+/* Question */
+
+.question {
+font-size: 18px;
+font-weight: 600;
+line-height: 1.5;
+
+```
+flex: 1;
+```
+
+}
+
+/* Answer */
+
+.answer {
+margin-top: 25px;
+padding-top: 17px;
+
+```
+border-top: 1px solid #eeeeee;
+
+color: #555;
+```
+
+}
+
+.answer-label {
+font-size: 11px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.7px;
+
+```
+color: #999;
+
+margin-bottom: 7px;
+```
+
+}
+
+.answer p {
+margin: 0;
+font-size: 14px;
+line-height: 1.5;
+}
+
+/* Empty state */
+
+.empty-message {
+grid-column: 1 / -1;
+
+```
+text-align: center;
+padding: 60px 20px;
+
+color: #777;
+```
+
+}
+
+.empty-message h2 {
+color: #333;
+margin-bottom: 8px;
+}
+
+.empty-message p {
+margin: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 1050px) {
+.flashcard-grid {
+grid-template-columns: repeat(3, 1fr);
+}
+}
+
+@media (max-width: 800px) {
+.flashcard-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (max-width: 550px) {
+.flashcard-grid {
+grid-template-columns: 1fr;
+}
+
+```
+.flashcards-page {
+    width: 94%;
+    margin: 30px auto;
+}
+
+
+}

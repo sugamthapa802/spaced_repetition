@@ -1,302 +1,394 @@
+/* =========================================================
+   Page container
+   ========================================================= */
+
 .decks-container {
-max-width: 1050px;
-margin: 0 auto;
-padding: 55px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
 }
 
-/* Header */
+/* =========================================================
+   Header
+   ========================================================= */
 
 .decks-header {
-display: flex;
-align-items: center;
-justify-content: space-between;
-gap: 30px;
-
-
-margin-bottom: 40px;
-
-
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 36px;
 }
 
 .section-label {
-font-size: 0.75rem;
-font-weight: 700;
-letter-spacing: 0.12em;
-opacity: 0.6;
-
-
-margin-bottom: 8px;
-
-
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: #8a8a8a;
+    margin: 0 0 8px;
+    text-transform: uppercase;
 }
 
 .decks-header h1 {
-font-size: 2.4rem;
-margin-bottom: 8px;
+    font-size: 38px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #1a1a1a;
+    line-height: 1.1;
 }
 
 .header-description {
-margin: 0;
-opacity: 0.65;
+    color: #6b6b6b;
+    margin: 0;
+    font-size: 15px;
 }
 
-/* Create button */
+/* =========================================================
+   Create Deck button
+   ========================================================= */
 
 .create-deck-btn {
-display: inline-block;
+    display: inline-flex;
+    align-items: center;
 
+    padding: 11px 18px;
 
-padding: 12px 20px;
+    border-radius: 10px;
 
-border-radius: 10px;
+    background: #212529;
+    color: #ffffff;
 
-background: #212529;
-color: white;
+    text-decoration: none;
 
-text-decoration: none;
-font-weight: 600;
+    font-size: 13px;
+    font-weight: 600;
 
-white-space: nowrap;
+    white-space: nowrap;
 
-transition: opacity 0.2s ease,
-            transform 0.2s ease;
-
-
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .create-deck-btn:hover {
-opacity: 0.85;
-transform: translateY(-2px);
+    background: #343a40;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* Deck grid */
+/* =========================================================
+   Deck grid
+   ========================================================= */
 
 .deck-grid {
-display: grid;
-
-
-grid-template-columns: repeat(3, 1fr);
-
-gap: 20px;
-
-
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-/* Deck card */
+/* =========================================================
+   Deck card
+   ========================================================= */
 
 .deck-card {
-display: flex;
-flex-direction: column;
+    background: #ffffff;
 
+    border: 1px solid #e8e8e8;
+    border-radius: 14px;
 
-min-height: 250px;
+    padding: 20px;
 
-padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 
-border: 1px solid #e5e5e5;
-border-radius: 16px;
+    display: flex;
+    flex-direction: column;
 
-background: white;
-
-transition: transform 0.2s ease,
-            box-shadow 0.2s ease;
-
-
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
 
 .deck-card:hover {
-transform: translateY(-4px);
-
-
-box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.08);
-
-
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
 
-/* Card top */
+/* =========================================================
+   Deck card top row
+   ========================================================= */
 
 .deck-card-top {
-display: flex;
-align-items: center;
-justify-content: space-between;
-
-
-margin-bottom: 25px;
-
-
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
 }
 
 .deck-icon {
-display: flex;
-align-items: center;
-justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    width: 38px;
+    height: 38px;
 
-width: 48px;
-height: 48px;
+    border-radius: 10px;
 
-border-radius: 12px;
+    background: #f2f4f7;
 
-background: #f1f3f5;
+    font-size: 18px;
 
-font-size: 1.4rem;
-
-
+    flex-shrink: 0;
 }
 
-.deck-number {
-font-size: 0.8rem;
-opacity: 0.45;
+.deck-card-top h2 {
+    flex: 1;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    margin: 0;
+
+    color: #1a1a1a;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-/* Deck information */
+.delete-deck-icon {
+    font-size: 15px;
+
+    text-decoration: none;
+
+    opacity: 0.5;
+
+    transition: opacity 0.2s ease;
+}
+
+.delete-deck-icon:hover {
+    opacity: 1;
+}
+
+/* =========================================================
+   Description
+   ========================================================= */
 
 .deck-info {
-flex: 1;
-}
-
-.deck-info h2 {
-font-size: 1.25rem;
-
-
-margin-bottom: 10px;
-
-word-break: break-word;
-
-
+    margin-bottom: 4px;
+    flex: 1;
 }
 
 .deck-info p {
-font-size: 0.9rem;
-line-height: 1.5;
-
-
-margin: 0;
-
-opacity: 0.65;
-
-
+    color: #6b6b6b;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
 }
 
-.deck-info .no-description {
-font-style: italic;
-opacity: 0.4;
+.no-description {
+    font-style: italic;
+    color: #a0a0a0 !important;
 }
 
-/* Card actions */
+/* =========================================================
+   Card actions
+   ========================================================= */
 
 .deck-actions {
-margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 22px;
 }
 
+/* =========================================================
+   View Flashcards button
+   ========================================================= */
+
+.view-cards-btn {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 11px 11px 11px 14px;
+
+    border-radius: 11px;
+
+    background: linear-gradient(180deg, #262b30 0%, #1a1d21 100%);
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.view-cards-btn:hover {
+    background: linear-gradient(180deg, #32383f 0%, #24282d 100%);
+
+    border-color: rgba(255, 255, 255, 0.12);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.16),
+        0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+
+.view-cards-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.14);
+}
+
+/* Text + small cards icon */
+
+.view-cards-label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+/* Small icon beside text */
+
+.view-cards-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 7px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    transition: background 0.2s ease;
+}
+
+.view-cards-btn:hover .view-cards-icon {
+    background: rgba(255, 255, 255, 0.18);
+
+    animation: cardFlick 0.5s ease;
+}
+
+@keyframes cardFlick {
+    0%   { transform: rotate(0deg)  translateY(0);    }
+    40%  { transform: rotate(-6deg) translateY(-1px); }
+    70%  { transform: rotate(3deg)  translateY(0);    }
+    100% { transform: rotate(0deg)  translateY(0);    }
+}
+
+/* Circular arrow */
+
+.view-cards-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 26px;
+    height: 26px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    transition:
+        transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background 0.2s ease;
+}
+
+.view-cards-btn:hover .view-cards-arrow {
+    transform: translateX(4px);
+
+    background: rgba(255, 255, 255, 0.22);
+}
+
+/* =========================================================
+   Add Card button
+   ========================================================= */
+
 .add-card-btn {
-display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    width: 100%;
+    box-sizing: border-box;
 
-width: 100%;
+    padding: 10px 12px;
 
-padding: 10px;
+    border-radius: 10px;
 
-border: 1px solid #dee2e6;
-border-radius: 9px;
+    background: #f7f7f7;
 
-text-align: center;
+    border: 1px solid #e2e2e2;
 
-text-decoration: none;
+    color: #444;
 
-color: inherit;
+    text-decoration: none;
 
-font-size: 0.9rem;
-font-weight: 600;
+    font-size: 13px;
+    font-weight: 600;
 
-transition: background 0.2s ease,
-            border-color 0.2s ease;
-
-
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .add-card-btn:hover {
-background: #f8f9fa;
-border-color: #ced4da;
+    background: #eeeeee;
+
+    border-color: #d5d5d5;
+
+    transform: translateY(-1px);
 }
 
-/* Empty state */
+/* =========================================================
+   Empty state
+   ========================================================= */
 
 .empty-decks {
-display: flex;
-flex-direction: column;
-align-items: center;
+    text-align: center;
 
+    padding: 80px 24px;
 
-text-align: center;
+    border: 2px dashed #e2e2e2;
+    border-radius: 16px;
 
-padding: 80px 25px;
-
-border: 1px dashed #ced4da;
-border-radius: 18px;
-
-
+    background: #fafafa;
 }
 
 .empty-icon {
-font-size: 3rem;
-margin-bottom: 18px;
+    font-size: 48px;
+    margin-bottom: 12px;
 }
 
 .empty-decks h2 {
-margin-bottom: 10px;
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: #1a1a1a;
 }
 
 .empty-decks p {
-max-width: 450px;
-
-
-margin-bottom: 25px;
-
-line-height: 1.6;
-
-opacity: 0.65;
-
-
-}
-
-/* Responsive */
-
-@media (max-width: 850px) {
-
-
-.deck-grid {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-
-}
-
-@media (max-width: 600px) {
-
-
-.decks-container {
-    padding: 40px 18px;
-}
-
-.decks-header {
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.decks-header h1 {
-    font-size: 2rem;
-}
-
-.create-deck-btn {
-    width: 100%;
-    text-align: center;
-}
-
-.deck-grid {
-    grid-template-columns: 1fr;
-}
-
-
+    color: #6b6b6b;
+    margin: 0 0 24px;
 }

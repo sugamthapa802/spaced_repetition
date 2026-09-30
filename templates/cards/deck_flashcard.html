@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+Flashcards
+{% endblock %}
+
+{% block extra_css %} <link rel="stylesheet" href="{% static 'cards/css/deck_flashcard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="flashcards-page">
+
+
+<div class="page-header">
+    <h1>Flashcards</h1>
+    <p>Review the cards in this deck</p>
+</div>
+
+<div class="flashcard-grid">
+
+    {% for flashcard in flashcards %}
+
+    <div class="flashcard">
+
+        <div class="card-number">
+            Card {{ forloop.counter }}
+        </div>
+
+        <div class="question">
+            {{ flashcard.question }}
+        </div>
+
+        <div class="answer">
+            <div class="answer-label">Answer</div>
+            <p>{{ flashcard.answer }}</p>
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="empty-message">
+        <h2>No flashcards yet</h2>
+        <p>Add some flashcards to this deck to start studying.</p>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+</div>
+
+{% endblock %}
