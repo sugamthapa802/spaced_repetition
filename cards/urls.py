@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (UserRegisterView,index,UserLogin,UserLogout,CreateDeckView,
                     CreateFlashcardView,ReviewFlashcardView,UpdateFlashcardReviewView,
-                    DeckListView,DeleteDeckView)
+                    DeckListView,DeleteDeckView,ListFlashcardView)
 # from .import views
 
 urlpatterns=[
@@ -13,6 +13,7 @@ urlpatterns=[
     path("listdeck/",DeckListView.as_view(),name="listdeck"),
     path("deletedeck/<int:pk>/",DeleteDeckView.as_view(),name="deletedeck"),
     path("createflashcard/",CreateFlashcardView.as_view(),name="createflashcard"),
+    path("deck/<int:pk>/",ListFlashcardView.as_view(),name="listflashcard"),
     path("review/",ReviewFlashcardView.as_view(),name="review"),
     path("update-review/",UpdateFlashcardReviewView.as_view(),name="update-review"),
 ]
